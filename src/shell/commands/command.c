@@ -58,13 +58,13 @@ Command shell_commands_list[] = {
     {"clear",    {"cls", NULL}, "No args.", "Clears the screen.",                                               shell_clear_command},
     {"echo",     {NULL},        "No args.", "Prints string to the console.",                                    shell_echo_command},  
     {"guiload",  {NULL},        "No args.", "Loads up the GUI (WIP!)",                                          shell_guiload_command},
-    {"ls",       {NULL},        "(str:directory)", "List files in a directory.",                                shell_ls_command},  
+    {"ls",       {"dir", NULL}, "(str:directory)", "List files in a directory.",                                shell_ls_command},  
     // {"mkdir",    {NULL},        "(str:directory)", "Creates a empty directory.",                                shell_mkdir_command}, // <-- TODO
     {"pause",    {NULL},        "(-t int:time) (-k)", "Pauses the terminal until a keyboard input.",            shell_pause_command},  
     {"pl",       {NULL},        "No args.", "Shows the connected data devices.",                                shell_pl_command},  
     {"chstat",   {NULL},        "No args.", "Display system information.",                                      shell_chstat_command},  
     {"vbetest",  {NULL},        "No args.", "Test Bochs VBE extensions",                                        shell_vbetest_command},  
-    {"whereami", {NULL},        "No args.", "Prints the current directory",                                     shell_whereami_command},
+    {"whereami", {"pwd", NULL}, "No args.", "Prints the current directory",                                     shell_whereami_command},
     {"recovery", {NULL},        "No args.", "Recovery mode (WIP)",                                              shell_recovery_command}
 };
 int shell_commands_count = sizeof(shell_commands_list) / sizeof(Command);

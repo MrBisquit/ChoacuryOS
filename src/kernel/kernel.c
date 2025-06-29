@@ -44,6 +44,19 @@ void StartUp_Beeps() {
  * These parameters are pushed onto the stack by the assembly kernel entry file.
  */
 
+void term_log_ok(const char* message) {
+    term_write("   OK   ", TC_LIME);
+    term_write(message, TC_WHITE);
+}
+void term_log_error(const char* message) {
+    term_write("  ERROR ", TC_LRED);
+    term_write(message, TC_WHITE);
+}
+void term_log_info(const char* message) {
+    term_write("  INFO  ", TC_LBLUE);
+    term_write(message, TC_WHITE);
+}
+
 void k_main(multiboot_info_t* mbd, uint32_t magic) {
     gdt_init();
     idt_init();
@@ -57,9 +70,17 @@ void k_main(multiboot_info_t* mbd, uint32_t magic) {
 
     term_init(term_width, buffer_height, visible_height, vga_set_char, vga_move_cursor);
 
-    term_write("\n\xB0\xB1\xB2\xDB Welcome to Choacury! \xDB\xB2\xB1\xB0\n", TC_LIME);
+    // Logging previous events
+    term_log_info("Choacury Kernel Booting...\n");
+    term_log_ok("Initialized GDT\n");
+    term_log_ok("Initialized IDT\n");
+    term_log_ok("Initialized Kernel Heap\n");
+    term_log_ok("Initialized terminal\n");
+
+    // Moved down
+    /*term_write("\n\xB0\xB1\xB2\xDB Welcome to Choacury! \xDB\xB2\xB1\xB0\n", TC_LIME);
     term_write("Version: Build " __DATE__ " (GUI Testing)\n", TC_WHITE);
-    term_write("(C)opyright: \2 Pineconium 2023-2025.\n\n", TC_WHITE);
+    term_write("(C)opyright: \2 Pineconium 2023-2025.\n\n", TC_WHITE);*/
 
     if (magic != MULTIBOOT_BOOTLOADER_MAGIC) {
         panic("Bootloader did not provide multiboot information\n");
@@ -72,19 +93,53 @@ void k_main(multiboot_info_t* mbd, uint32_t magic) {
     }
 
     pmm_init(mbd);
+    term_log_ok("Initialized PMM\n");
     pic_init();
+    term_log_ok("Initialized PIC\n");
     pit_init();
+    term_log_ok("Initialized PIT\n");
 
     asm volatile("sti");
 
     ps2_init();
     ps2_init_keymap_us();
 
+    term_log_ok("Initialized PS2\n");
+
     // StartUp_Beeps();
 
     storage_device_init();
     debug_print_pci();
-	
+
+    term_log_ok("Initialized storage device\n");
+
+    term_log_info("Would you like to start with graphics or shell? (g/s)\n");
+    uint8_t init_shell = 0;
+    for (;;)
+    {
+        key_event_t key_event;
+        ps2_get_key_event(&key_event);
+
+        if(key_event.key == KEY_G) {
+            init_shell = 0;
+            break;
+        } else if(key_event.key == KEY_S) {
+            init_shell = 1;
+            break;
+        }
+    }
+
+    if(init_shell == 0) {
+        term_log_info("Initializing GUI...\n");
+
+        panic("Couldn't load LNDE\n");
+    }
+
+    term_log_info("Initializing shell...\n");
+
+    term_write("\n\xB0\xB1\xB2\xDB Welcome to Choacury! \xDB\xB2\xB1\xB0\n", TC_LIME);
+    term_write("Version: Build " __DATE__ " (GUI Testing)\n", TC_WHITE);
+    term_write("(C)opyright: \2 Pineconium 2023-2025.\n\n", TC_WHITE);
 
     shell_start();
 }
