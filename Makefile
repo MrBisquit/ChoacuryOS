@@ -62,6 +62,7 @@ SRCS :=								\
 	shell/commands/whereami/whereami.c \
 	shell/commands/vbetest/vbetest.c \
 	shell/commands/recovery/recovery.c \
+	shell/commands/poweroff/poweroff.c \
 	gui/bitmap/bitmap.c             \
 	gui/window/window.cpp           \
 	gui/window/manager/manager.cpp  \

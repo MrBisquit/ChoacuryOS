@@ -19,6 +19,7 @@
         "desktop.h": "c",
         "panic.h": "c",
         "vga.h": "c",
-        "command.h": "c"
+        "command.h": "c",
+        "poweroff.h": "c"
     }
 }
