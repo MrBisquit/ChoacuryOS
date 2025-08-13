@@ -69,6 +69,7 @@ SRCS :=								\
 	gui/window/gui.cpp              \
 	recovery/recovery.cpp          	\
 	recovery/pong.cpp               \
+	kernel/process.c				\
 	#gui/widgets.c					\ # remove comment when its implemented.
 # gui/desktop.cpp (See line 46) was previously a C file
 # gui/window/window.cpp (See line 65) was previously a C file

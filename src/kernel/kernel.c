@@ -52,6 +52,10 @@ void term_log_error(const char* message) {
     term_write("  ERROR ", TC_LRED);
     term_write(message, TC_WHITE);
 }
+void term_log_critical(const char* message) {
+    term_write("  CRIT  ", TC_DKRED);
+    term_write(message, TC_LRED);
+}
 void term_log_info(const char* message) {
     term_write("  INFO  ", TC_LBLUE);
     term_write(message, TC_WHITE);
@@ -83,7 +87,8 @@ void k_main(multiboot_info_t* mbd, uint32_t magic) {
     term_write("(C)opyright: \2 Pineconium 2023-2025.\n\n", TC_WHITE);*/
 
     if (magic != MULTIBOOT_BOOTLOADER_MAGIC) {
-        panic("Bootloader did not provide multiboot information\n");
+        //panic("Bootloader did not provide multiboot information\n");
+        term_log_critical("Bootloader did not provide multiboot information\n");
     }
 
     // For the stuff on lines 30-31
@@ -113,7 +118,13 @@ void k_main(multiboot_info_t* mbd, uint32_t magic) {
 
     term_log_ok("Initialized storage device\n");
 
-    term_log_info("Would you like to start with graphics or shell? (g/s)\n");
+    term_log_info("Clearing processes\n");
+    for(int i = 0; i < MAX_PROCESSES; i++) {
+        process_table[i].state = PROCESS_TERMINATED;
+    }
+    term_log_ok("Cleared processes successfully\n");
+
+    /*term_log_info("Would you like to start with graphics or shell? (g/s)\n");
     uint8_t init_shell = 0;
     for (;;)
     {
@@ -133,13 +144,16 @@ void k_main(multiboot_info_t* mbd, uint32_t magic) {
         term_log_info("Initializing GUI...\n");
 
         panic("Couldn't load LNDE\n");
-    }
+    }*/
 
     term_log_info("Initializing shell...\n");
 
     term_write("\n\xB0\xB1\xB2\xDB Welcome to Choacury! \xDB\xB2\xB1\xB0\n", TC_LIME);
     term_write("Version: Build " __DATE__ " (GUI Testing)\n", TC_WHITE);
     term_write("(C)opyright: \2 Pineconium 2023-2025.\n\n", TC_WHITE);
+
+    create_process(&shell_start, HIGH_PRIORITY);
+    scheduler();
 
     shell_start();
 }
