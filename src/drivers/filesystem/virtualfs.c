@@ -2,4 +2,6 @@
 
 #include "virtualfs.h"
 
-// TODO: Expand this :/
+bool FAT_register_vfs(FAT_filesystem_t* fs, vfs_fs_type_t* vfs) {
+    
+}

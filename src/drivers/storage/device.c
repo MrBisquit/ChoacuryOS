@@ -46,3 +46,7 @@ void storage_device_add(storage_device_t* device) {
     // Add the device to the list
     g_storage_devices[g_storage_device_count++] = device;
 }
+
+/*bool storage_create_dev(storage_device_t* device, dev_device_t* dev) {
+    
+}*/

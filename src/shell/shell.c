@@ -258,6 +258,10 @@ PSF1_FONT* LoadFont() {
 
 /* Main CLI shell stuff. */
 void shell_start() {
+    // Little warning, since this won't be using the shiny new VFS
+    term_write("\n\n     Warning: ", TC_LRED);
+    term_write("This shell does NOT support the VFS (Virtual File System).\n\n\n", TC_DKRED);
+
     // Existing initialization code for the shell
     s_fat_fs = FAT_Init(g_storage_devices[0]->partitions[1]);
     if (s_fat_fs == NULL) {

@@ -15,6 +15,8 @@ LDFLAGS  := -m elf_i386 -T $(SRC_DIR)/linker.ld -nostdlib -flto
 SRCS :=								\
 	drivers/debug.c					\
 	drivers/filesystem/fat.c		\
+	drivers/filesystem/virtualfs.c  \
+	drivers/device/dev.c            \
 	drivers/gdt.c					\
 	drivers/idt.c					\
 	drivers/interrupt.asm			\
@@ -63,6 +65,7 @@ SRCS :=								\
 	shell/commands/vbetest/vbetest.c \
 	shell/commands/recovery/recovery.c \
 	shell/commands/poweroff/poweroff.c \
+	shell/commands/exit/exit.c      \
 	gui/bitmap/bitmap.c             \
 	gui/window/window.cpp           \
 	gui/window/manager/manager.cpp  \

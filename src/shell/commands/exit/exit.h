@@ -1,0 +1,1 @@
+int shell_exit_command(int argc, const char** argv);

@@ -1005,4 +1005,3 @@ static void update_file_size_in_dir_entry(FAT_file_t* file) {
 
 	kfree(buffer);
 }
-

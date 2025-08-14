@@ -15,6 +15,8 @@
 #include "../drivers/ps2.h"
 #include "../drivers/sound.h"
 #include "../drivers/storage/device.h"
+#include "../drivers/device/dev.h"
+#include "../drivers/filesystem/virtualfs.h"
 #include "../drivers/types.h"
 #include "../drivers/utils.h"
 #include "../drivers/vga.h"
@@ -75,7 +77,7 @@ void k_main(multiboot_info_t* mbd, uint32_t magic) {
     term_init(term_width, buffer_height, visible_height, vga_set_char, vga_move_cursor);
 
     // Logging previous events
-    term_log_info("Choacury Kernel Booting...\n");
+    term_log_info("Choacury Kernel (Choakern) Booting...\n");
     term_log_ok("Initialized GDT\n");
     term_log_ok("Initialized IDT\n");
     term_log_ok("Initialized Kernel Heap\n");
@@ -117,6 +119,13 @@ void k_main(multiboot_info_t* mbd, uint32_t magic) {
     debug_print_pci();
 
     term_log_ok("Initialized storage device\n");
+
+    // Register storage devices
+    for (int i = 0; i < g_storage_device_count; i++) {
+        term_log_ok("Registered storage device ");
+        term_write(g_storage_devices[i]->model, TC_WHITE);
+        term_write(" to VFS\n", TC_WHITE);
+    }
 
     term_log_info("Clearing processes\n");
     for(int i = 0; i < MAX_PROCESSES; i++) {

@@ -20,6 +20,8 @@
         "panic.h": "c",
         "vga.h": "c",
         "command.h": "c",
-        "poweroff.h": "c"
+        "poweroff.h": "c",
+        "ps2_keymap_us.h": "c",
+        "pl.h": "c"
     }
 }

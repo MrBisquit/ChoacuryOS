@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../types.h"
+#include "../device/dev.h"
 #include <stdbool.h>
 
 typedef struct storage_device {
@@ -22,3 +23,6 @@ void storage_device_add(storage_device_t* device);
 
 extern int g_storage_device_count;
 extern storage_device_t** g_storage_devices;
+
+// Creates a dev device from a storage device
+//bool storage_create_dev(storage_device_t* device, dev_device_t* dev);

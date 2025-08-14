@@ -15,10 +15,17 @@ typedef uint16_t u16;
 typedef int16_t  s16;
 typedef uint8_t  u8;
 typedef int8_t   s8;
+typedef unsigned long ulong;
 
 typedef uintptr_t uptr;
 
 #define low_16(address) (u16)((address) & 0xFFFF)
 #define high_16(address) (u16)(((address) >> 16) & 0xFFFF)
+
+/// @brief A string with a length
+typedef struct str { 
+    const char* str;
+    u32 len;
+} str_t;
 
 #endif

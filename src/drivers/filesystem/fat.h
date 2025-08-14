@@ -94,4 +94,3 @@ size_t FAT_Write(FAT_file_t* file, size_t offset, const void* src_buffer, size_t
 
 
 bool FAT_CreateDirectory(FAT_file_t* parent, const char* name);
-
