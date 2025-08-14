@@ -69,6 +69,6 @@ Command shell_commands_list[] = {
     {"whereami", {"pwd", NULL}, "No args.", "Prints the current directory",                                     shell_whereami_command},
     {"recovery", {NULL},        "No args.", "Recovery mode (WIP)",                                              shell_recovery_command},
     {"poweroff", {NULL},        "No args.", "Powers the system off",                                            shell_poweroff_command},
-    {"exit",     {NULL},        "No args.", "Exits the shell (Only works if launched as a process)",            shell_exit_command}
+    {"exit",     {"quit", NULL},"No args.", "Exits the shell (Only works if launched as a process)",            shell_exit_command}
 };
 int shell_commands_count = sizeof(shell_commands_list) / sizeof(Command);

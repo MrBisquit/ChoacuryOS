@@ -15,7 +15,11 @@ typedef struct vfs_dentry vfs_dentry_t;
 typedef struct vfs_file vfs_file_t;
 typedef struct vfs_mount vfs_mount_t;*/
 
+typedef struct vfs_fs_type vfs_fs_type_t;
 
+typedef struct vfs {
+    vfs_fs_type_t* g_fs_types;
+} vfs_t;
 
 // Definitions
 typedef struct vfs_fs_type {
@@ -35,8 +39,9 @@ typedef struct vfs_file_ops {
     u8 (*release)(struct vfs_file* file);
 } vfs_file_ops_t;
 
-void vfs_init(vfs_fs_type_t* vfs);
+void vfs_init(vfs_t* vfs);  // Initialize the VFS
 
-bool FAT_register_vfs(FAT_filesystem_t* fs, vfs_fs_type_t* vfs);
+bool FAT_convert_vfs(FAT_filesystem_t* fs, vfs_fs_type_t* vfs);
+bool vfs_add_type(vfs_fs_type_t* vfs);
 
 #endif

@@ -47,6 +47,7 @@ void storage_device_add(storage_device_t* device) {
     g_storage_devices[g_storage_device_count++] = device;
 }
 
-/*bool storage_create_dev(storage_device_t* device, dev_device_t* dev) {
-    
-}*/
+bool storage_create_dev(storage_device_t* device, dev_device_t* dev) {
+    dev = (dev_device_t*)kmalloc(sizeof(dev_device_t*));
+    dev->ptr = device;
+}

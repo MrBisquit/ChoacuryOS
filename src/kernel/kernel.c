@@ -120,8 +120,16 @@ void k_main(multiboot_info_t* mbd, uint32_t magic) {
 
     term_log_ok("Initialized storage device\n");
 
+    term_log_info("Initiailizing FAT file system\n");
+    term_log_info("Initializing VFS\n");
+    vfs_t* vfs;
+    vfs_init(vfs);
+    term_log_ok("VFS initialized\n");
+
     // Register storage devices
     for (int i = 0; i < g_storage_device_count; i++) {
+        
+
         term_log_ok("Registered storage device ");
         term_write(g_storage_devices[i]->model, TC_WHITE);
         term_write(" to VFS\n", TC_WHITE);

@@ -15,9 +15,9 @@ typedef struct dev_device dev_device_t;*/
 // Device types (For VFS)
 // Devices must be registered here before they can be used in the VFS
 typedef enum dev_device_type {
-    DEV_BLOCK,
-    DEV_CHAR,
-    DEV_STREAM
+    DEV_BLOCK,      // Disk
+    DEV_CHAR,       // Serial, terminal, etc
+    DEV_STREAM      // Network
 } dev_device_type_t;
 
 typedef struct dev_block_ops {
@@ -57,5 +57,7 @@ typedef struct dev_device {
 
 	struct dev_device* next;
 } dev_device_t;
+
+//static struct dev_device_t** device_list;
 
 #endif

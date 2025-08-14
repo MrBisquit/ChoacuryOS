@@ -25,4 +25,4 @@ extern int g_storage_device_count;
 extern storage_device_t** g_storage_devices;
 
 // Creates a dev device from a storage device
-//bool storage_create_dev(storage_device_t* device, dev_device_t* dev);
+bool storage_create_dev(storage_device_t* device, dev_device_t* dev);
