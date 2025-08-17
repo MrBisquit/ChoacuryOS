@@ -25,6 +25,7 @@ typedef struct dev_block_ops {
 	int (*close)(void* priv);
 	u32 (*read)(void* priv, void* buf, u32 sz, s64 off);
 	u32 (*write)(void* priv, const void* buf, u32 sz, s64 off);
+    // Any operations that aren't handled by the above
 	int (*ioctl)(void* priv, ulong cmd, ulong arg);
 } dev_block_ops_t;
 

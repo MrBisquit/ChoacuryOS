@@ -24,6 +24,7 @@ typedef struct vfs {
 // Definitions
 typedef struct vfs_fs_type {
 	const char* name;
+    struct dev_device* dev;
 
 	u8 (*mount)(struct vfs_fs_type* fs_type, struct device* dev, struct vfs_superblock** out);
 	void (*unmount)(struct vfs_superblock* sb);
@@ -41,7 +42,9 @@ typedef struct vfs_file_ops {
 
 void vfs_init(vfs_t* vfs);  // Initialize the VFS
 
-bool FAT_convert_vfs(FAT_filesystem_t* fs, vfs_fs_type_t* vfs);
 bool vfs_add_type(vfs_fs_type_t* vfs);
+
+// Filesystem conversion types
+bool FAT_convert_vfs(FAT_filesystem_t* fs, vfs_fs_type_t* vfs); // Defined in fat.c
 
 #endif

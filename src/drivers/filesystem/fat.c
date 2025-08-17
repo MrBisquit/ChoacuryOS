@@ -8,6 +8,8 @@
 #include "../../memory/kmalloc.h"
 #include "../../kernel/panic.h"
 #include "../../shell/terminal.h"
+#include "virtualfs.h"
+#include "../storage/device.h"
 
 // Bootsector stuff! (donated from the OSDev Wiki)
 
@@ -1004,4 +1006,10 @@ static void update_file_size_in_dir_entry(FAT_file_t* file) {
 	}
 
 	kfree(buffer);
+}
+
+// Converts a FAT_filesystem_t to a vfs_fs_type_t
+bool FAT_convert_vfs(FAT_filesystem_t* fs, vfs_fs_type_t* vfs) {
+    vfs = (vfs_fs_type_t*)kmalloc(sizeof(vfs_fs_type_t*));
+    storage_create_dev(fs->storage_device, vfs->dev);
 }
