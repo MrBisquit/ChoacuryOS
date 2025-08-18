@@ -14,16 +14,21 @@ Please make sure to read the relevant section before making your contribution.
 
 ## Table of Contents
 
-- [Code of Conduct](#code-of-conduct)
-- [I Have a Question](#i-have-a-question)
-- [I Want To Contribute](#i-want-to-contribute)
-- [Reporting Bugs](#reporting-bugs)
-- [Suggesting Enhancements](#suggesting-enhancements)
-- [Your First Code Contribution](#your-first-code-contribution)
-- [Improving The Documentation](#improving-the-documentation)
-- [Styleguides](#styleguides)
-- [Commit Messages](#commit-messages)
-- [Join The Project Team](#join-the-project-team)
+- [Contributing to ChoacuryOS](#contributing-to-choacuryos)
+  - [Table of Contents](#table-of-contents)
+  - [Code of Conduct](#code-of-conduct)
+  - [I Have a Question](#i-have-a-question)
+  - [I Want To Contribute](#i-want-to-contribute)
+    - [Reporting Bugs](#reporting-bugs)
+      - [Before Submitting a Bug Report](#before-submitting-a-bug-report)
+      - [How Do I Submit a Good Bug Report?](#how-do-i-submit-a-good-bug-report)
+    - [Suggesting Enhancements](#suggesting-enhancements)
+      - [Before Submitting an Enhancement](#before-submitting-an-enhancement)
+      - [How Do I Submit a Good Enhancement Suggestion?](#how-do-i-submit-a-good-enhancement-suggestion)
+    - [Your First Code Contribution](#your-first-code-contribution)
+    - [Improving The Documentation](#improving-the-documentation)
+  - [Styleguids](#styleguids)
+    - [Commit messages](#commit-messages)
 
 
 ## Code of Conduct
@@ -120,6 +125,17 @@ If this is your first time contributing to the project, make sure that you read 
 
 When improving the documentation, please ensure that you follow the style of the documentation. Make sure you look at other pages, similar to what you are making. If you are unsure, or cannot find an example,
 please ask someone in the Discord server.
+
+## Styleguids
+To be added to.
+
+### Commit messages
+When commiting your changes, you must follow the guide:
+
+- Commit messages must start with the component modified, for example: `Kernel: ...`
+- They must be informative, for example `Kernel: Added output of CPU information on boot`
+- **If you would like to**, you can add something like `[FIX]`, `[FEATURE]`, or `[IMPLEMENTATION]`.
+  - However, if you'd like to do this, please use the short version, for example: `[FEAT]` instead of `[FEATURE]`, and `[IMPL]` instead of `[IMPLEMENTATION]`.
 
 <!--
 Add these later
