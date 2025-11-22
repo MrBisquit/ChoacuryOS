@@ -279,7 +279,7 @@ void shell_start() {
 	
 	term_write("Creating test file...\n", TC_GREEN);
 	
-	char* teststr = "Hello, World!";
+	const char* teststr = "Hello, World!";
 	FAT_file_t* file = FAT_OpenAbsolute(s_fat_fs, "/test.txt");
 	FAT_Write(file, 0, teststr, strlen(teststr));
 	FAT_Close(file);
